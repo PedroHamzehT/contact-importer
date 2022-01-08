@@ -1,13 +1,26 @@
 class Contact < ApplicationRecord
   belongs_to :user
 
+  encrypts :credit_card
+
   validates :name, :date_of_birth, :address, :credit_card, :franchise, :email, presence: true
   validates :email, uniqueness: true
   validate special_chars_on_name,
            date_of_birth_format,
            phone_format
 
+  before_save :find_franchise,
+              :store_last_credit_card_numbers
+
   private
+
+  def find_franchise
+    self.franchise = CreditCardValidations::Detector.new(credit_card).brand
+  end
+
+  def store_last_credit_card_numbers
+    self.last_credit_card_numbers = credit_card.last(4)
+  end
 
   def special_chars_on_name
     special_chars_regex = /[!"#$%&'()*+,-.\/:;<=>?@[\\]^_`{|}~]/
