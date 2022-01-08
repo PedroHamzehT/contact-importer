@@ -3,7 +3,7 @@ class Contact < ApplicationRecord
 
   encrypts :credit_card
 
-  validates :name, :date_of_birth, :address, :credit_card, :franchise, :email, presence: true
+  validates :name, :date_of_birth, :phone, :address, :credit_card, :franchise, :email, presence: true
 
   validates :name,          format: { without: /[!"#$%&'()*+,-.\/:;<=>?@[\\]^_`{|}~]/, message: 'Invalid special character' }
   validates :date_of_birth, format: { with: /^([0-9]{8}|[0-9]{4}-[0-9]{2}-[0-9]{2})$/, message: 'Invalid format' }
