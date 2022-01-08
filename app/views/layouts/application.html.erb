@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <% if authenticated_user? %>
+      <%= link_to 'Log out', destroy_sessions_url, method: "delete" %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
