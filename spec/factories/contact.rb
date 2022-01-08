@@ -7,5 +7,6 @@ FactoryBot.define do
     credit_card { '5555555555554444' }
     franchise { 'mastercard' }
     email { 'example@gmail.com' }
+    user_id { create(:user).id }
   end
 end

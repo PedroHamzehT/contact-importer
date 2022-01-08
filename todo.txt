@@ -1,0 +1,17 @@
+Import > Contacts > FailedImports
+
+Before request for an import the user will see some select elements to indicate wich header of him CSV will be saved in the databse
+The user will first request for an import, that will be created a record for that with status On Hold.
+Then will be enqueued in sidekiq with the id of the import, when performed will call a service / interactor to import the contacts.
+If the contact of the time has valid values will create a new contact else will create a new failed_import record.
+
+Import model:
+  - status
+  - file
+  - has_many failed_imports
+
+FailedImports
+  - header
+  - data
+  - fail_reason
+  - import_id
