@@ -1,0 +1,18 @@
+<form action="/sessions" method="post">
+  <div class="field">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="user[username]">
+  </div>
+
+  <div class="field">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="user[password]">
+  </div>
+
+  <% if @error %>
+    <p><%= @error %></p>
+  <% end %>
+  <button type="submit">Log in</button>
+</form>
+
+<a href="/users/new">Register</a>

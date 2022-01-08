@@ -1,0 +1,18 @@
+<form action="/users" method="post">
+  <div class="field">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="user[username]">
+  </div>
+
+  <div class="field">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="user[password]">
+  </div>
+
+  <% @user.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+  <button type="submit">Register</button>
+</form>
+
+<a href="/sessions/new">Log in</a>
