@@ -1,24 +1,31 @@
-# README
+# Get Started
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Set up
+- Ensure postgres and redis are installed and running on their default ports
+- Fill your database credentials on `config/database.yml`
+- Install gems by running `bundle install`
+- Access rails console by running `raisl c`, then run `Lockbox.generate_key` and copy it to paste in Rails credentials file
+- Run the following command to access Rails credentials and set up lockbox master key for the environments you want:
+```
+EDITOR="vim" rails credentials:edit --environment <env>
+```
+- After open Rails credentials type and replace the master key by the one generated before:
+```yml
+lockbox:
+    master_key: "0000000000000000000000000000000000000000000000000000000000000000"
+```
+- Set up database by running `rails db:create db:migrate`
+- And finally startup the sidekiq before rails server, running `bundle exec sidekiq`
+- Then run:
+```
+rails server
+```
 
-Things you may want to cover:
+## Testing
+To see tests running and working run:
+```ruby
+rspec --format documentation
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Samples used on tests:
+The samples CSV files are located on: `spec/csv_samples`
