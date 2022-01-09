@@ -1,7 +1,9 @@
 class ContactsController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!
 
   def index
-    @contacts = Contact.where(user_id: current_user.id)
+    @pagy, @contacts = pagy(Contact.where(user_id: current_user.id))
   end
 end

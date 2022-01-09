@@ -1,4 +1,6 @@
 module ContactHelper
+  include Pagy::Frontend
+
   def safe_fields
     ['Name', 'Date of Birth', 'Phone', 'Address', 'Credit card last numbers', 'Franchise', 'E-mail']
   end
