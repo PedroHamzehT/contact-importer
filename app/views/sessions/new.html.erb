@@ -1,20 +1,21 @@
 <form action="/sessions" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-  <div class="field">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="user[username]">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" id="username" name="user[username]" class="form-control">
   </div>
 
-  <div class="field">
-    <label for="password">Password</label>
-    <input type="password" id="password" name="user[password]">
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" id="password" name="user[password]" class="form-control">
   </div>
 
   <% if @error %>
     <p><%= @error %></p>
   <% end %>
-  <button type="submit">Log in</button>
+
+  <button type="submit" class="btn btn-primary">Log in</button>
 </form>
 
-<a href="/users/new">Register</a>
+<a href="/users/new" class="btn btn-light">Register</a>
