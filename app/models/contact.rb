@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
 
   validates :name, :date_of_birth, :phone, :address, :credit_card, :franchise, :email, presence: true
 
-  validates :name,          format: { without: /[!"#$%&'()*+,-.\/:;<=>?@[\\]^_`{|}~]/, message: 'invalid special character' }
+  validates :name,          format: { without: /[!"#$%&'()*+,.\/:;<=>?@[\\]^_`{|}~]/, message: 'invalid special character' }
   validates :date_of_birth, format: { with: /^([0-9]{8}|[0-9]{4}-[0-9]{2}-[0-9]{2})$/, message: 'invalid format', multiline: true }
   validates :phone,         format: { with: /^(\(\+[0-9]{2}\) [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}|\(\+[0-9]{2}\) [0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2})$/, message: 'invalid format', multiline: true }
   validates :email,         format: { with: /^[\w-]+@([\w-]+\.)+[\w-]{2,3}$/, message: 'invalid format', multiline: true }
