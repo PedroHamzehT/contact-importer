@@ -1,1 +1,19 @@
 <h2>Contacts page!</h2>
+
+<table>
+  <thead>
+    <% safe_fields.each do |field| %>
+      <th><%= field %></th>
+    <% end %>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <% safe_attributes.each do |attr| %>
+          <td><%= contact[attr] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
