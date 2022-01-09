@@ -5,7 +5,7 @@
 
   <h4>Type which header should be used for each field!</h4>
 
-  <% @import.errors.full_messages do |error| %>
+  <% @import.errors.full_messages.each do |error| %>
     <p><%= error %></p>
   <% end %>
 

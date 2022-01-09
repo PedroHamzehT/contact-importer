@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   resources :contacts, only: %i[index]
 
-  resources :imports, only: %i[new create]
+  resources :imports, only: %i[index new create]
 end

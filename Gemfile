@@ -61,3 +61,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'credit_card_validations', '~> 4.1'
 gem 'lockbox', '~> 0.6.6'
+gem 'sidekiq', '~> 6.3', '>= 6.3.1'
+gem 'csv', '~> 3.2', '>= 3.2.2'
+gem 'active_storage_validations', '~> 0.9.6'
