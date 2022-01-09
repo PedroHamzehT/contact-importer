@@ -12,7 +12,9 @@ class Contact < ApplicationRecord
 
   validate :email_uniqueness
 
-  before_save :find_franchise, :store_last_credit_card_numbers
+  before_validation :find_franchise
+
+  before_save :store_last_credit_card_numbers
 
   private
 
@@ -25,6 +27,6 @@ class Contact < ApplicationRecord
   end
 
   def email_uniqueness
-    errors.add(:email, 'E-mail already exists') if Contact.find_by(email: email)
+    errors.add(:email, 'already exists') if Contact.find_by(email: email)
   end
 end

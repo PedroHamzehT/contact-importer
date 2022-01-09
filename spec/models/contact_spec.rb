@@ -13,6 +13,27 @@ RSpec.describe Contact, type: :model do
     it 'must create a contact' do
       expect { Contact.create(contact_attrs) }.to change { Contact.count }.by(1)
     end
+
+    context 'credit card flows' do
+      let(:contact_attrs) { attributes_for(:contact, credit_card: '371449635398431', franchise: nil) }
+
+      it 'must save last four numbers of credit card' do
+        contact.save
+        expect(contact.last_credit_card_numbers).to eq(contact_attrs[:credit_card].last(4))
+      end
+  
+      it 'must recognize the franchise' do
+        franchise = CreditCardValidations::Detector.new(contact.credit_card).brand
+
+        contact.save
+        expect(contact.franchise).to eq(franchise.to_s)
+      end
+  
+      it 'must encrypts credit card' do
+        contact.save
+        expect(contact.credit_card_ciphertext).not_to eq(contact_attrs[:credit_card])
+      end
+    end
   end
 
   context 'missing values' do
