@@ -33,9 +33,14 @@ class ImportContactsService
       contact[headers.key(header)] = value
     end
 
-    contact.valid? ? contact.save : create_fail_log(contact)
+    contact.valid? ? contact.save : create_fail_log(contact, content)
   end
 
-  def create_fail_log(contact)
+  def create_fail_log(contact, line_content)
+    ImportFail.create(
+      import_id: import.id,
+      line_content: line_content,
+      fail_reasons: contact.errors.full_messages.join(';')
+    )
   end
 end

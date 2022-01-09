@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_09_172426) do
+ActiveRecord::Schema.define(version: 2022_01_09_194410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 2022_01_09_172426) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
+  create_table "import_fails", force: :cascade do |t|
+    t.string "line_content"
+    t.string "fail_reasons"
+    t.bigint "import_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["import_id"], name: "index_import_fails_on_import_id"
+  end
+
   create_table "imports", force: :cascade do |t|
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
@@ -76,5 +85,6 @@ ActiveRecord::Schema.define(version: 2022_01_09_172426) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "contacts", "users"
+  add_foreign_key "import_fails", "imports"
   add_foreign_key "imports", "users"
 end
