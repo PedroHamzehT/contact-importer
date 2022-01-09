@@ -1,0 +1,25 @@
+<h3>New Import</h3>
+
+<form action="/imports" method="post" enctype="multipart/form-data">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <h4>Type which header should be used for each field!</h4>
+
+  <% @import.errors.full_messages do |error| %>
+    <p><%= error %></p>
+  <% end %>
+
+  <% import_fields.each do |import_field| %>
+    <div class="field-group">
+      <label for="<%= import_field %>"><%= import_field.capitalize %> -> </label>
+      <input placeholder="Your header" type="text" id="<%= import_field %>" name="import[headers][<%= import_field %>]" required="true">
+    </div>
+
+    <br>
+  <% end %>
+
+  <input type="file" id="file" name="import[file]" required="true"/>
+  <br>
+  
+  <button type="submit">Import</button>
+</form>

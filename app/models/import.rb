@@ -1,4 +1,6 @@
 class Import < ApplicationRecord
+  FIELDS = %w[name date_of_birth phone address credit_card email].freeze
+
   belongs_to :user
   has_one_attached :file
 

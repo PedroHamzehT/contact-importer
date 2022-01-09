@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: %i[index]
+
+  resources :imports, only: %i[new create]
 end
