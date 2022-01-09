@@ -2,7 +2,7 @@ class ImportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @imports = Import.where(status: 4)
+    @imports = Import.includes(:file_attachment).where(status: 3, user_id: current_user.id)
   end
 
   def new

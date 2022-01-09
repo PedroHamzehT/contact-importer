@@ -30,17 +30,34 @@ class ImportContactsService
 
     content.first.split(';').each_with_index do |value, index|
       header = file_headers[index]
-      contact[headers.key(header)] = value
+
+      field = headers.key(header)
+      unless field
+        create_fail_log(contact, content.first, ["No header found to field #{header}"])
+
+        return
+      end
+
+      contact[field] = value
     end
 
-    contact.valid? ? contact.save : create_fail_log(contact, content)
+    contact.valid? ? finish_import(contact) : create_fail_log(contact, content.first)
   end
 
-  def create_fail_log(contact, line_content)
+  def finish_import(contact)
+    contact.save
+    import.update(status: 3)
+  end
+
+  def create_fail_log(contact, line_content, reasons=[])
+    reasons += contact.errors.full_messages
+
     ImportFail.create(
       import_id: import.id,
       line_content: line_content,
-      fail_reasons: contact.errors.full_messages.join(';')
+      fail_reasons: reasons.join(';')
     )
+
+    import.update(status: 2)
   end
 end

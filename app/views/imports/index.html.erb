@@ -1,0 +1,7 @@
+<h2>Successfully imports</h2>
+
+<ul>
+  <% @imports.each do |import| %>
+    <li><%= import.file.filename.to_s %></li>
+  <% end %>
+</ul>

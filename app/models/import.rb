@@ -1,4 +1,6 @@
 class Import < ApplicationRecord
+  has_many :import_fails
+
   FIELDS = %w[name date_of_birth phone address credit_card email].freeze
 
   belongs_to :user
