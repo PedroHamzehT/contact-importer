@@ -10,7 +10,7 @@ class Contact < ApplicationRecord
   validates :phone,         format: { with: /^(\(\+[0-9]{2}\) [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}|\(\+[0-9]{2}\) [0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2})$/, message: 'Invalid format', multiline: true }
   validates :email,         format: { with: /^[\w-]+@([\w-]+\.)+[\w-]{2,3}$/, message: 'Invalid format', multiline: true }
 
-  # validate email_existence
+  validate :email_uniqueness
 
   before_save :find_franchise, :store_last_credit_card_numbers
 
@@ -24,7 +24,7 @@ class Contact < ApplicationRecord
     self.last_credit_card_numbers = credit_card.last(4)
   end
 
-  def email_existence
-    errors.add(:email, 'E-mail already exists') if find_by(email: email)
+  def email_uniqueness
+    errors.add(:email, 'E-mail already exists') if Contact.find_by(email: email)
   end
 end
