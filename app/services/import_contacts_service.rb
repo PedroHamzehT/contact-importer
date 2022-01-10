@@ -16,6 +16,7 @@ class ImportContactsService
 
     file_parsed.each do |content|
       import_contact(content)
+      break if import.failed?
     end
   end
 
@@ -33,13 +34,13 @@ class ImportContactsService
 
       field = headers.key(header)
       unless field
-        create_fail_log(contact, content.first, ["No header found to field #{header}"])
-
-        return
+        create_fail_log(contact, content.first, ["Invalid headers - #{header} header found but not associated"])
+        break
       end
 
       contact[field] = value
     end
+    return if import.failed?
 
     contact.valid? ? finish_import(contact) : create_fail_log(contact, content.first)
   end
