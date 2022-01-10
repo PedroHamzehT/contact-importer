@@ -4,9 +4,9 @@
 - Ensure postgres and redis are installed and running on their default ports
 - Fill your database credentials on `config/database.yml`
 - Install gems by running `bundle install`
-- Access rails console by running `raisl c`, then run `Lockbox.generate_key` and copy it to paste in Rails credentials file
-- Run the following command to access Rails credentials and set up lockbox master key for the environments you want:
-```
+- Access rails console by running `rails c`, then run `Lockbox.generate_key` and copy it to paste in Rails credentials file
+- Run the following command to access Rails credentials in the environments you desire:
+```sh
 EDITOR="vim" rails credentials:edit --environment <env>
 ```
 - After open Rails credentials type and replace the master key by the one generated before:
@@ -14,8 +14,8 @@ EDITOR="vim" rails credentials:edit --environment <env>
 lockbox:
     master_key: "0000000000000000000000000000000000000000000000000000000000000000"
 ```
-- Set up database by running `rails db:create db:migrate`
-- And finally startup the sidekiq before rails server, running `bundle exec sidekiq`
+- Set up database running `rails db:create db:migrate`
+- And finally start up the sidekiq running `bundle exec sidekiq`
 - Then run:
 ```
 rails server
