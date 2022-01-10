@@ -5,14 +5,25 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link <%= 'active' if current_controller?('contacts') %>" href="/contacts">Contacts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link <%= 'active' if current_controller?('imports') %>" href="/imports">Imports</a>
-        </li>
-      </ul>
+      <% if authenticated_user? %>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if current_controller?('contacts') %>" href="/contacts">Contacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if current_controller?('imports') %>" href="/imports">Imports</a>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if current_controller?('sessions') %>" href="/sessions/new">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if current_controller?('users') %>" href="/users/new">Sign up</a>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
