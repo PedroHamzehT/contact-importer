@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   def logout
     session.delete(:user_id)
 
-    redirect_to '/users/new'
+    redirect_to '/sessions/new'
   end
 
   private
