@@ -1,0 +1,24 @@
+<h4><%= @import.file.filename.to_s %> fails</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Line content</th>
+      <th scope="col">Reasons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @import_fails.each do |import_fail| %>
+      <tr>
+        <td><%= import_fail.line_content %></td>
+        <td>
+          <ul>
+            <% import_fail.fail_reasons.split(';').each do |reason| %>
+              <li><%= reason %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

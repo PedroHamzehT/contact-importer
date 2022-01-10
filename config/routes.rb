@@ -11,5 +11,9 @@ Rails.application.routes.draw do
 
   resources :contacts, only: %i[index]
 
-  resources :imports, only: %i[index new create]
+  resources :imports, only: %i[index new create] do
+    member do
+      get '/fails', to: 'imports#fails'
+    end
+  end
 end

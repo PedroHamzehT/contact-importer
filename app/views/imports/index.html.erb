@@ -34,7 +34,7 @@
 
     <ul>
       <% @failed_imports.each do |import| %>
-        <li><%= import.file.filename.to_s %></li>
+        <li><a href="/imports/<%= import.id %>/fails"><%= import.file.filename.to_s %></a></li>
       <% end %>
     </ul>
   </div>

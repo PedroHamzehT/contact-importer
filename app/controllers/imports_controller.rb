@@ -25,6 +25,12 @@ class ImportsController < ApplicationController
     end
   end
 
+  def fails
+    @import = Import.includes(:file_attachment).find(params[:id])
+
+    @import_fails = @import.import_fails
+  end
+
   private
 
   def import_params
