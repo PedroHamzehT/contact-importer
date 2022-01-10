@@ -1,9 +1,11 @@
 # Get Started
-
+Node version: v14.18.1
+Ruby version: 3.0.3
 ## Set up
 - Ensure postgres and redis are installed and running on their default ports
 - Fill your database credentials on `config/database.yml`
-- Install gems by running `bundle install`
+- Install gems running `bundle install`
+- Install webpacker running `rails webpacker:install`
 - Set up database running `rails db:create db:migrate`
 - And finally start up the sidekiq running `bundle exec sidekiq`
 - Then run:
