@@ -27,5 +27,16 @@ To see tests running and working run:
 rspec --format documentation
 ```
 
-## Samples used on tests:
-The samples CSV files are located on: `spec/csv_samples`
+For the final test (as user) you can login with a test user already created:
+```
+username: test
+password: test123
+```
+
+And import a bunch of contacts with the sample located on `sample.csv`, using those following headers:
+- name
+- birthday
+- telephone
+- address
+- card
+- email
