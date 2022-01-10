@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to '/users/new' unless session[:user_id]
+    redirect_to '/sessions/new' unless session[:user_id]
   end
 
   def user_authenticated!

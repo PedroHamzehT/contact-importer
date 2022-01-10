@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: session_params[:username])
 
     unless @user
-      @error = 'User not found!'
+      @error = 'Invalid username or password'
       return render :new
     end
 
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
       redirect_to '/contacts'
     else
-      @error = 'Incorrect password'
+      @error = 'Invalid username or password'
       render :new
     end
   end
