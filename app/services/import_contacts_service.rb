@@ -15,8 +15,7 @@ class ImportContactsService
     @file_headers = build_file_headers(file_parsed.shift)
 
     file_parsed.each do |content|
-      import_contact(content)
-      break if import.failed?
+      break unless import_contact(content)
     end
   end
 
@@ -28,6 +27,7 @@ class ImportContactsService
 
   def import_contact(content)
     contact = Contact.new(user_id: import.user_id)
+    invalid_headers = false
 
     content.first.split(';').each_with_index do |value, index|
       header = file_headers[index]
@@ -35,14 +35,18 @@ class ImportContactsService
       field = headers.key(header)
       unless field
         create_fail_log(contact, content.first, ["Invalid headers - #{header} header found but not associated"])
+        invalid_headers = true
+
         break
       end
 
       contact[field] = value
     end
-    return if import.failed?
+    return false if invalid_headers
 
     contact.valid? ? finish_import(contact) : create_fail_log(contact, content.first)
+
+    true
   end
 
   def finish_import(contact)
