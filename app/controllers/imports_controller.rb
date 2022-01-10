@@ -2,7 +2,10 @@ class ImportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @imports = Import.includes(:file_attachment).where(status: 3, user_id: current_user.id)
+    @on_hold_imports = Import.includes(:file_attachment).where(status: 0, user_id: current_user.id)
+    @processing_imports = Import.includes(:file_attachment).where(status: 1, user_id: current_user.id)
+    @finished_imports = Import.includes(:file_attachment).where(status: 3, user_id: current_user.id)
+    @failed_imports = Import.includes(:file_attachment).where(status: 2, user_id: current_user.id)
   end
 
   def new

@@ -6,7 +6,7 @@
   <p><b>Type which header should be used for each field!</b></p>
 
   <% @import.errors.full_messages.each do |error| %>
-    <p><%= error %></p>
+    <p style="color: red;"><%= error %></p>
   <% end %>
 
   <% import_fields.each do |import_field| %>

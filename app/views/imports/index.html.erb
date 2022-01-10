@@ -1,10 +1,44 @@
-<h2>Successfully imports</h2>
+<div class="row">
+  <div class="col-md-3">
+    <h5><b>On hold imports</b></h5>
 
-<ul>
-  <% @imports.each do |import| %>
-    <li><%= import.file.filename.to_s %></li>
-  <% end %>
-</ul>
+    <ul>
+      <% @on_hold_imports.each do |import| %>
+        <li><%= import.file.filename.to_s %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <h5><b>Processing imports</b></h5>
+
+    <ul>
+      <% @processing_imports.each do |import| %>
+        <li><%= import.file.filename.to_s %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <h5><b>Finished imports</b></h5>
+
+    <ul>
+      <% @finished_imports.each do |import| %>
+        <li><%= import.file.filename.to_s %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <h5><b>Failed imports</b></h5>
+
+    <ul>
+      <% @failed_imports.each do |import| %>
+        <li><%= import.file.filename.to_s %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <hr>
 
