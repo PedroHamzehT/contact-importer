@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :user_authenticated!
+  before_action :user_authenticated!, only: %i[new create]
+  before_action :authenticate_user!, only: %i[logout]
 
   def new; end
 
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
 
     unless @user
       @error = 'User not found!'
-      render :new
+      return render :new
     end
 
     if @user.authenticate(session_params[:password])
@@ -21,8 +22,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
-    session[:user_id] = nil
+  def logout
+    session.delete(:user_id)
 
     redirect_to '/users/new'
   end

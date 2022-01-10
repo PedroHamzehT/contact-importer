@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: %i[new create] do
     collection do
-      delete '', to: 'sessions#destroy'
+      get '/logout', to: 'sessions#logout'
     end
   end
 
