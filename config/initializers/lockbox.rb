@@ -1,1 +1,1 @@
-Lockbox.master_key = Rails.application.credentials.lockbox[:master_key]
+Lockbox.master_key = '2646b49d20d8efc91facf85605b17cce44ff8af826a6f415699b93daf5dea72f'
