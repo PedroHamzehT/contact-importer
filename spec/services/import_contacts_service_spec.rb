@@ -60,7 +60,7 @@ RSpec.describe ImportContactsService do
 
       it 'must have no header found to field reason' do
         execute
-        expect(ImportFail.last.fail_reasons).to include('No header found to field name')
+        expect(ImportFail.last.fail_reasons).to include('Invalid headers - name header found but not associated')
       end
     end
   end
